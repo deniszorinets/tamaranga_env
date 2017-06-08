@@ -1,0 +1,40 @@
+version: '3'
+services:
+    nginx:
+        build: nginx
+        container_name: nginx
+        ports:
+            - '80:80'
+            - '443:443'
+        volumes:
+            - ${PHP_WEBROOT}:/var/www/html
+        links:
+            - php-fpm
+            - mysql
+            - mail
+    php-fpm:
+        container_name: php-fpm
+        ports:
+            - '9000:9000'
+        volumes:
+            - ${PHP_WEBROOT}:/var/www/html
+    mysql:
+        build: mysql
+        container_name: mysql
+        ports:
+            - '3306:3306'
+        volumes:
+            - mysql_data:/var/lib/mysql
+        environment:
+            MYSQL_USER: 'tamaranga'
+            MYSQL_PASSWORD: 'N7@g-Q@OTvQP&hf'
+            MYSQL_ROOT_PASSWORD: 'd890|A058s#3VWo'
+    mail:
+        
+volumes:
+    mysql_data:
+        driver: local
+    maildata:
+        driver: local
+    mailstate:
+        driver: local
