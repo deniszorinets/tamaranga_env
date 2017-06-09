@@ -3,25 +3,30 @@ services:
     php-fpm:
         build: ./php-fpm/production
     mail:
-        image: tvial/docker-mailserver:latest
+        build: ./mail/production
         hostname: mail
         domainname: domain.com
         container_name: mail
+        environment:
+            MAIL_DOMAIN: domain.com
+            SENDER_HOST: php-fpm.docker_default
+            CERT_COUNTRY: COUNTRY
+            CERT_STATE: CITY
+            CERT_CITY: CITY
+            CERT_COMPANY: COMPANY
         ports:
             - "25:25"
             - "143:143"
             - "587:587"
             - "993:993"
         volumes:
-            - maildata:/var/mail
-            - mailstate:/var/mail-state
-            - ./mail/production/config/:/tmp/docker-mailserver/
-        environment:
-            - ENABLE_SPAMASSASSIN=1
-            - ENABLE_CLAMAV=1
-            - ENABLE_FAIL2BAN=1
-            - ENABLE_POSTGREY=1
-            - ONE_DIR=1
-            - DMS_DEBUG=0
-        cap_add:
-            - NET_ADMIN
+            - mail_data:/var/lib/postfix
+            - mail_quene_data:/var/spool/postfix
+            - dkim_db:/var/db/dkim
+volumes:
+    mail_data:
+        driver: local
+    mail_quene_data:
+        driver: local
+    dkim_db:
+        driver: local
