@@ -1,0 +1,7 @@
+version: '3'
+services:
+    php-fpm:
+        build: ./php5.6-fpm/develop
+        ports:
+            - '9000:9000'
+            - '9090:9090'

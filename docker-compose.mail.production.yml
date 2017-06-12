@@ -1,7 +1,5 @@
 version: '3'
 services:
-    php-fpm:
-        build: ./php-fpm/production
     mail:
         build: ./mail/production
         hostname: mail
