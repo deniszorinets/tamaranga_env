@@ -18,6 +18,10 @@ services:
             - ${PHP_WEBROOT}:/var/www/html
         links:
             - mail
+    php-cli:
+        container_name: php-cli
+        links:
+            - mail
     mysql:
         build: mysql
         container_name: mysql
@@ -26,6 +30,7 @@ services:
         volumes:
             - mysql_data:/var/lib/mysql
         environment:
+            # for security reasons do not use this passwords and users
             MYSQL_USER: 'tamaranga'
             MYSQL_PASSWORD: 'N7@g-Q@OTvQP&hf'
             MYSQL_ROOT_PASSWORD: 'd890|A058s#3VWo'

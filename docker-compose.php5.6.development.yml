@@ -5,3 +5,7 @@ services:
         ports:
             - '9000:9000'
             - '9090:9090'
+    php-cli:
+        build: ./php5.6-cli/develop
+        ports:
+            - '9091:9091'

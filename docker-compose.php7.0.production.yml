@@ -4,3 +4,5 @@ services:
         build: ./php7.0-fpm/production
         ports:
             - '9000:9000'
+    php-cli:
+        build: ./php7.0-cli/production

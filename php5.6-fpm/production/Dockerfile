@@ -1,5 +1,4 @@
 FROM php:5-fpm
-
 RUN apt-get -y update \
     && apt-get -y upgrade \
     && apt-get -y install libicu-dev libfreetype6-dev libpng12-dev libjpeg62-turbo-dev libxml2-dev autoconf g++ libtool make \

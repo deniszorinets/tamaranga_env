@@ -14,9 +14,6 @@ services:
             CERT_COMPANY: COMPANY
         ports:
             - "25:25"
-            - "143:143"
-            - "587:587"
-            - "993:993"
         volumes:
             - mail_data:/var/lib/postfix
             - mail_quene_data:/var/spool/postfix
