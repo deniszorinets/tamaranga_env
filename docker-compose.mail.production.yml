@@ -6,7 +6,7 @@ services:
         domainname: domain.com
         container_name: mail
         environment:
-            MAIL_DOMAIN: domain.com
+            MAIL_DOMAIN: "domain.com domain1.com"
             SENDER_HOST: php-fpm.docker_default
             CERT_COUNTRY: COUNTRY
             CERT_STATE: CITY
