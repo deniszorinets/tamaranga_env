@@ -10,6 +10,8 @@ ADD config/opendkim/* /etc/opendkim/
 
 ADD scripts/* /usr/bin/
 
+RUN chmod a+x /usr/bin/cert_gen.sh /usr/bin/dkim_hosts.sh /usr/bin/postfix.sh
+
 CMD /usr/bin/cert_gen.sh && \
     /usr/bin/dkim_hosts.sh && \
     supervisord -n
