@@ -12,6 +12,7 @@ services:
             CERT_STATE: CITY
             CERT_CITY: CITY
             CERT_COMPANY: COMPANY
+            CERT_DOMAIN: domain.com
         ports:
             - "25:25"
         volumes:
