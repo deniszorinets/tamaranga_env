@@ -12,16 +12,24 @@ services:
             - php-fpm
             - mysql
             - mail
+        networks:
+            tamaranga_net:
     php-fpm:
         container_name: php-fpm
         volumes:
             - ${PHP_WEBROOT}:/var/www/html
         links:
             - mail
+            - mysql
+        networks:
+            tamaranga_net:
     php-cli:
         container_name: php-cli
         links:
             - mail
+            - mysql
+        networks:
+            tamaranga_net:
     mysql:
         build: mysql
         container_name: mysql
@@ -29,13 +37,30 @@ services:
             - '3306:3306'
         volumes:
             - mysql_data:/var/lib/mysql
+        networks:
+            tamaranga_net:
+                ipv4_address: 172.16.238.2
+                ipv6_address: 2001:3984:3989::2
         environment:
             # for security reasons do not use this passwords and users
             MYSQL_USER: 'tamaranga'
             MYSQL_PASSWORD: 'N7@g-Q@OTvQP&hf'
             MYSQL_ROOT_PASSWORD: 'd890|A058s#3VWo'
     mail:
+        networks:
+            tamaranga_net:
         
 volumes:
     mysql_data:
         driver: local
+
+networks:
+    tamaranga_net:
+        driver: bridge
+        driver_opts:
+            com.docker.network.enable_ipv6: "true"
+        ipam:
+            driver: default
+            config:
+            - subnet: 172.16.238.0/24
+            - subnet: 2001:3984:3989::/64
