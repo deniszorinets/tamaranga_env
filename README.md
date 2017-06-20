@@ -101,7 +101,7 @@ docker run -it --rm --volume 'path/to/app:/app' ${PROJECT_NAME}_php-cli /bin/sh 
 docker run -it --rm --volume 'path/to/app:/app' ${PROJECT_NAME}_php-cli /bin/sh -c "cd /app && php -q public_html/index.php bff=cron-manager"
 ```
 
-__ Alternatively__
+__Alternatively__
 
 *Run database migrations*
 ```sh
