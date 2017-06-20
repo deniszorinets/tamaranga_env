@@ -10,6 +10,11 @@ Set PROJECT_NAME environment variable
 export PROJECT_NAME=my_project_name
 ```
 
+Create ```.env``` file
+```sh
+echo PHP_WEBROOT=/path/to/projects/files >> .env
+```
+
 # Development environment:
 - nginx
 - php-fpm (7.0 or 5.6) with xdebug and ioncube loader
