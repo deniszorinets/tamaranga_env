@@ -2,17 +2,17 @@ version: '3'
 services:
     mail:
         build: ./mail/production
-        hostname: mail
-        domainname: domain.com
+        hostname: ${MAIL_HOST}
+        domainname: ${MAIL_DOMAIN}
         container_name: mail
         environment:
-            MAIL_DOMAIN: "domain.com domain1.com"
-            SENDER_HOST: php-fpm.docker_default
-            CERT_COUNTRY: COUNTRY
-            CERT_STATE: CITY
-            CERT_CITY: CITY
-            CERT_COMPANY: COMPANY
-            CERT_DOMAIN: domain.com
+            MAIL_DOMAIN: ${MAIL_SENDERS}
+            SENDER_HOST: php-fpm.${PROJECT_NAME}_default
+            CERT_COUNTRY: ${CERT_COUNTRY}
+            CERT_STATE: ${CERT_STATE}
+            CERT_CITY: ${CERT_CITY}
+            CERT_COMPANY: ${CERT_COMPANY}
+            CERT_DOMAIN: ${MAIL_DOMAIN}
         ports:
             - "25:25"
         volumes:

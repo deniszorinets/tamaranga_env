@@ -10,9 +10,9 @@ Set PROJECT_NAME environment variable
 export PROJECT_NAME=my_project_name
 ```
 
-Create ```.env``` file
+Create ```.env``` file with environment variables
 ```sh
-echo PHP_WEBROOT=/path/to/projects/files >> .env
+make init
 ```
 
 # Development environment:
@@ -25,23 +25,16 @@ __PHP 5.6__
 
 *Start containers*
 ```sh
-docker-compose --project-name=$PROJECT_NAME -f docker-compose.yml -f docker-compose.mail.development.yml -f docker-compose.php5.6.development.yml up -d
-```
-*Stop containers*
-```sh
-docker-compose --project-name=$PROJECT_NAME -f docker-compose.yml -f docker-compose.mail.development.yml -f docker-compose.php5.6.development.yml down
+make up up-dev-5.6
 ```
 
 __PHP 7.0__
 
 *Start containers*
 ```sh
-docker-compose --project-name=$PROJECT_NAME -f docker-compose.yml -f docker-compose.mail.development.yml -f docker-compose.php7.0.development.yml up -d
+make up up-dev-7.0
 ```
-*Stop containers*
-```sh
-docker-compose --project-name=$PROJECT_NAME -f docker-compose.yml -f docker-compose.mail.development.yml -f docker-compose.php7.0.development.yml down
-```
+
 
 # Production environment:
 - nginx
@@ -56,22 +49,21 @@ __PHP 5.6__
 
 *Start containers*
 ```sh
-docker-compose --project-name=$PROJECT_NAME -f docker-compose.yml -f docker-compose.mail.production.yml -f docker-compose.php5.6.production.yml up -d
+make up up-prod-5.6
 ```
-*Stop containers*
-```sh
-docker-compose --project-name=$PROJECT_NAME -f docker-compose.yml -f docker-compose.mail.production.yml -f docker-compose.php5.6.production.yml down
-```
+
 
 __PHP 7.0__
 
 *Start containers*
 ```sh
-docker-compose --project-name=$PROJECT_NAME -f docker-compose.yml -f docker-compose.mail.production.yml -f docker-compose.php7.0.production.yml up -d
+make up up-prod-7.0
 ```
-*Stop containers*
+
+
+#Stop containers
 ```sh
-docker-compose --project-name=$PROJECT_NAME -f docker-compose.yml -f docker-compose.mail.production.yml -f docker-compose.php7.0.production.yml down
+make down
 ```
 
 # Connect to running docker container
