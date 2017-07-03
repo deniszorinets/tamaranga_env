@@ -25,14 +25,14 @@ __PHP 5.6__
 
 *Start containers*
 ```sh
-make up up-dev-5.6
+make up-dev-5.6
 ```
 
 __PHP 7.0__
 
 *Start containers*
 ```sh
-make up up-dev-7.0
+make up-dev-7.0
 ```
 
 
@@ -49,7 +49,7 @@ __PHP 5.6__
 
 *Start containers*
 ```sh
-make up up-prod-5.6
+make up-prod-5.6
 ```
 
 
@@ -57,7 +57,7 @@ __PHP 7.0__
 
 *Start containers*
 ```sh
-make up up-prod-7.0
+make up-prod-7.0
 ```
 
 
@@ -76,7 +76,7 @@ docker exec -it "id of running container" sh
 __Run command__
 
 ```sh
-docker run -it --rm --volume 'path/to/app:/app' ${PROJECT_NAME}_php-cli /bin/sh -c "cd app && php ./my-app.php"
+docker run -it --rm --volume '${PHP_WEBROOT}/app:/app' ${PROJECT_NAME}_php-cli /bin/sh -c "cd app && php ./my-app.php"
 ```
 
 __Examples__
@@ -84,18 +84,18 @@ __Examples__
 *Composer install*
 
 ```sh
-docker run -it --rm --volume 'path/to/app:/app' ${PROJECT_NAME}_php-cli /bin/sh -c "cd /app && composer install"
+docker run -it --rm --volume '${PHP_WEBROOT}/app:/app' ${PROJECT_NAME}_php-cli /bin/sh -c "cd /app && composer install"
 ```
 
 *Cron manager execution*
 
 ```sh
-docker run -it --rm --volume 'path/to/app:/app' ${PROJECT_NAME}_php-cli /bin/sh -c "cd /app && php -q public_html/index.php bff=cron-manager"
+docker run -it --rm --volume '${PHP_WEBROOT}/app:/app' ${PROJECT_NAME}_php-cli /bin/sh -c "cd /app && php -q public_html/index.php bff=cron-manager"
 ```
 
 __Alternatively__
 
 *Run database migrations*
 ```sh
-docker exec -it php-fpm sh -c "cd /path/to/app && ./vendor/bin/phinx migrate"
+docker exec -it php-fpm sh -c "cd /var/www/html/app && ./vendor/bin/phinx migrate"
 ```

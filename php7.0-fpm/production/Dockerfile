@@ -3,12 +3,14 @@ FROM php:7.0-fpm
 RUN apt-get -y update \
     && apt-get -y upgrade \
     && apt-get -y install libicu-dev libfreetype6-dev libpng12-dev libjpeg62-turbo-dev libxml2-dev autoconf g++ libtool make \
-    && docker-php-ext-install gd \
     && docker-php-ext-configure gd \
         --with-gd \
+        --with-jpeg \
+        --with-gif \
         --with-freetype-dir=/usr/include/ \
         --with-png-dir=/usr/include/ \
         --with-jpeg-dir=/usr/include/ \
+    && docker-php-ext-install gd \
     && docker-php-ext-install mbstring \
     && docker-php-ext-install pdo_mysql \
     && docker-php-ext-install opcache \
