@@ -7,6 +7,12 @@ while [ "$answer" -eq "0" ]; do
         project_name="tamaranga"
     fi
 
+    echo -n "Enter URL repository mastiff [git@bitbucket.org:clazionteam/mastiff.git]: "
+    read mastiff_repo
+    if [ -z $mastiff_repo ]; then
+        mastiff_repo="git@bitbucket.org:clazionteam/mastiff.git"
+    fi
+
     echo -n "Enter document root path: "
     read php_webroot
 
@@ -94,7 +100,10 @@ while [ "$answer" -eq "0" ]; do
 
     echo
 
+    env_path=$(pwd)
     echo "PROJECT_NAME=$project_name"
+    echo "ENV_PATH=$env_path"
+    echo "MASTIFF_REPO=$mastiff_repo"
     echo "PHP_WEBROOT=$php_webroot"
     echo "MAIL_HOST=$mail_host"
     echo "MAIL_DOMAIN=$mail_domain"
@@ -114,6 +123,8 @@ while [ "$answer" -eq "0" ]; do
         answer=1
 
         echo "PROJECT_NAME=$project_name" > .env
+        echo "ENV_PATH=$env_path" >> .env
+        echo "MASTIFF_REPO=$mastiff_repo" >> .env
         echo "PHP_WEBROOT=$php_webroot" >> .env
         echo "MAIL_HOST=$mail_host" >> .env
         echo "MAIL_DOMAIN=$mail_domain" >> .env
