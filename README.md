@@ -61,7 +61,7 @@ make up-prod-7.0
 ```
 
 
-#Stop containers
+# Stop containers
 ```sh
 make down
 ```
@@ -98,4 +98,10 @@ __Alternatively__
 *Run database migrations*
 ```sh
 docker exec -it php-fpm sh -c "cd /var/www/html/app && ./vendor/bin/phinx migrate"
+```
+# SELinux
+
+if you have some troubles with files permissions in mounted volume try
+```sh
+chcon -Rt svirt_sandbox_file_t /path/to/volume
 ```
